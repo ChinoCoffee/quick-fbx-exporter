@@ -232,8 +232,24 @@ header_comment = \
 '''
 
 
+
+
+from .shape_keys_utils import generate_scene_with_mixed_shape_keys, remove_hidden_working_scene
+
+
+def save_single(operator, scene, filepath, **kwargs):
+    """
+    save single scene with mixing shape keys
+    """
+    temp_scene = generate_scene_with_mixed_shape_keys(scene)
+    result = _save_single(operator, temp_scene, filepath, **kwargs)
+    remove_hidden_working_scene()
+
+    return result
+
+
 # This func can be called with just the filepath
-def save_single(operator, scene, filepath="",
+def _save_single(operator, scene, filepath="",
         global_matrix=None,
         context_objects=None,
         object_types={'EMPTY', 'CAMERA', 'LAMP', 'ARMATURE', 'MESH'},

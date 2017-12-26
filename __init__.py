@@ -22,7 +22,7 @@ bl_info = {
     "name": "Export FBX format with adapting displayed shape keys",
     "author": "Campbell Barton, Bastien Montagne, Jens Restemeier, unikko",
     "version": (3, 8, 3),
-    "blender": (2, 79, 1),
+    "blender": (2, 78, 0),
     "location": "File > Export > .fbx (with adapting displayed shape keys)",
     "description": "Implementing shape keys adaptation for exporting",
     "warning": "Currently under construction.",
@@ -245,6 +245,14 @@ class ExportFBX(bpy.types.Operator, ExportHelper, IOFBXOrientationHelper):
     # to the class instance from the operator settings before calling.
 
     version = EnumProperty(
+            items=(('ASCII6100', "FBX 6.1 ASCII",
+                                 "Legacy 6.1 ascii version - WARNING: Deprecated and no more maintained"),
+                   ),
+            name="Version",
+            description="Choose which version of the exporter to use",
+            )
+    """
+    version = EnumProperty(
             items=(('BIN7400', "FBX 7.4 binary", "Modern 7.4 binary version"),
                    ('ASCII6100', "FBX 6.1 ASCII",
                                  "Legacy 6.1 ascii version - WARNING: Deprecated and no more maintained"),
@@ -252,6 +260,7 @@ class ExportFBX(bpy.types.Operator, ExportHelper, IOFBXOrientationHelper):
             name="Version",
             description="Choose which version of the exporter to use",
             )
+    """
 
     # 7.4 only
     ui_tab = EnumProperty(
@@ -612,6 +621,8 @@ class ExportFBX(bpy.types.Operator, ExportHelper, IOFBXOrientationHelper):
                                             ))
 
         keywords["global_matrix"] = global_matrix
+
+        # Duplicate
 
         if self.version == 'BIN7400':
             from . import export_fbx_bin
