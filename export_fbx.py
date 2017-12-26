@@ -2300,7 +2300,7 @@ Objects:  {''')
 			Property: "FrontAxisSign", "int", "",1
 			Property: "CoordAxis", "int", "",0
 			Property: "CoordAxisSign", "int", "",1
-			Property: "UnitScaleFactor", "double", "",1
+			Property: "UnitScaleFactor", "double", "",100.0
 		}
 	}
 ''')
