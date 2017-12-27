@@ -234,7 +234,7 @@ class ImportFBX(bpy.types.Operator, ImportHelper, IOFBXOrientationHelper):
 
 class ExportFBX(bpy.types.Operator, ExportHelper, IOFBXOrientationHelper):
     """Write a FBX file"""
-    bl_idname = "export_scene.fbx"
+    bl_idname = "export_scene.quick_fbx"
     bl_label = "Export FBX"
     bl_options = {'UNDO', 'PRESET'}
 
